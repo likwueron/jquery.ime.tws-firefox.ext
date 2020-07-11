@@ -1,10 +1,10 @@
 {
 
   "manifest_version": 2,
-  "name": "jquery.ime.tws-firefox.ext",
+  "name": "Taiwanese input method",
   "version": "1.0",
 
-  "description": "let you use jquery.ime.tws phah taigi in every website",
+  "description": "let you use jquery.ime input Taiwanese in every website",
 
   "icons": {
     "48": "icons/tws-48.png"
