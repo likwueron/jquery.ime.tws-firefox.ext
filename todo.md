@@ -1,0 +1,2 @@
+- let user edit their own word
+- cannont load 'rules' via $.ajax, need set in content-script at first
