@@ -15,11 +15,30 @@ let additionalWord = [
 	[ 'bohoattoo', 'bô-hoat-tō͘'  ],
 	[ 'thinnoooo', 'thiⁿ-o͘-o͘' ]
 ];
-
 $.ime.twsInjector(taigi, { id: 'tws-LATN', name: 'Tâi-gí lô-má-jī', source: 'tws-latin.js', wordTable: additionalWord });
-
-var imeDom = $( 'input, textarea, [contenteditable]' );
-//activate ime
 $.ime.preferences.setLanguage('tws');
-//need to load data from runtime.getURL()
-imeDom.ime({ languages: ['tws'], imePath: browser.runtime.getURL('rules') + '/' });
+
+var stateKey = '';
+
+function onStateChanged() {
+	let newStateKey = '';
+	if(null == history.state) {
+		newStateKey = '';
+	}
+	else {
+		newStateKey = history.state.key;
+	}
+	
+	if(stateKey == newStateKey) {
+		return;
+	}
+	
+	//console.log('tws input method reload');
+	
+	var imeDom = $( 'input, textarea, [contenteditable]' );
+	imeDom.ime({ languages: ['tws'], imePath: browser.runtime.getURL('rules') + '/' });
+}
+
+$(document).ready(onStateChanged);
+$(window).bind('popstate', onStateChanged);
+
